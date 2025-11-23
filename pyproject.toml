@@ -1,0 +1,74 @@
+[project]
+name = "osm-placenames"
+version = "0.1.0"
+description = "OSM Placenames creates list of placenames from OSM and Wikidata"
+readme = "README.md"
+authors = [
+  {name = "Jonas Häggqvist", email = "rasher@gmail.com"}
+]
+maintainers = [
+  {name = "Jonas Häggqvist", email = "rasher@gmail.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: GIS",
+  # Not actually planning on publishing
+  "Private :: Do Not Upload",
+]
+license = {text = "MIT"}
+dependencies = [
+    "typer~=0.20",
+    "osmium~=4.2",
+    "rich~=14.2",
+    "wikidata~=0.9",
+    "shapely~=2.1",
+]
+requires-python = ">= 3.10"
+
+[project.optional-dependencies]
+test = [
+    "coverage",  # testing
+    "pytest",  # testing
+    "ruff",  # linting
+    "ty", # checking types
+    "ipdb", # debugging
+]
+
+[project.urls]
+bugs = "https://github.com/rasher/osm_placenames/issues"
+changelog = "https://github.com/rasher/osm_placenames/blob/master/changelog.md"
+homepage = "https://github.com/rasher/osm_placenames"
+
+[project.scripts]
+osm-placenames = "osm_placenames.placenames:app"
+resolve-wikidata = "osm_placenames.wikidata:app"
+db-format = "osm_placenames.dbformat:app"
+
+[tool.ty]
+# All rules are enabled as "error" by default; no need to specify unless overriding.
+# Example override: relax a rule for the entire project (uncomment if needed).
+# rules.TY015 = "warn"  # For invalid-argument-type, warn instead of error.
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+]
+
+[tool.uv]
+package = true
