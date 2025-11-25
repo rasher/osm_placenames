@@ -2,7 +2,8 @@ import pytest
 
 from osm_placenames.dbformat import cleanup_description, cleanup_wp
 
-WP_EN = 'https://en.wikipedia/wiki/'
+WP_EN = "https://en.wikipedia/wiki/"
+
 
 @pytest.mark.parametrize(
     ("input", "expected"),
@@ -18,6 +19,7 @@ WP_EN = 'https://en.wikipedia/wiki/'
 )
 def test_cleanup_description(input, expected):
     assert cleanup_description(input) == expected
+
 
 @pytest.mark.parametrize(
     ("input", "expected"),

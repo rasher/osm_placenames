@@ -12,6 +12,7 @@ from osmium.osm import Area, Node, Relation, Way
 from rich.progress import (
     Progress,
     SpinnerColumn,
+    TimeElapsedColumn,
 )
 from shapely.geometry import shape
 
@@ -92,7 +93,11 @@ def main(
             .with_areas()
         )
 
-        with Progress(SpinnerColumn(), "Extracting places: {task.completed}") as p:
+        progress_bar = Progress(
+            SpinnerColumn(), "Extracting places: [green]{task.completed}[/green] •", TimeElapsedColumn()
+        )
+
+        with progress_bar as p:
             for obj in p.track(processor):
                 tags = {k: v for k, v in obj.tags}
                 tags.update(get_location(obj))
