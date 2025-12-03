@@ -13,6 +13,8 @@ The package contains three tools
 * `resolve-wikidata`: Reads a CSV file and looks up data from [WikiData](https://wikidata.org), adding description
   and link to English Wikipedia.
 * `db-format`: Read CSV file and output in specific format with various modification.
+* `is-in`: Read CSV file and .poly files and add a column indicating which MultiPolygon each
+  point lies in.
 
 For each tool, see `cmd --help` for more detail and usage instructions.
 

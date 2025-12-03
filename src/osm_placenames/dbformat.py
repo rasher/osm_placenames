@@ -81,11 +81,14 @@ def main(
             for place in p.track(places):
                 wp = place.get("wikipedia")
                 desc = place.get("description")
-                if desc is not None:
+                is_in = place.get("is_in")
+                if desc:
                     desc = cleanup_description(desc)
-                if wp:
+                elif is_in is not None:
+                    desc = "{place_type} in {county}".format(place_type=place.get("place").capitalize(), county=is_in)
+                if wp or desc:
                     wp = cleanup_wp(wp)
-                    if wp in wps:
+                    if wp and wp in wps:
                         continue
                     wps.add(wp)
                     writer.writerow(

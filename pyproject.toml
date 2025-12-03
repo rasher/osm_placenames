@@ -51,6 +51,7 @@ homepage = "https://github.com/rasher/osm_placenames"
 osm-placenames = "osm_placenames.placenames:app"
 resolve-wikidata = "osm_placenames.wikidata:app"
 db-format = "osm_placenames.dbformat:app"
+is-in = "osm_placenames.is_in:app"
 
 [tool.ty]
 # All rules are enabled as "error" by default; no need to specify unless overriding.

@@ -16,8 +16,10 @@ mtime_str=$(date -d "@${mtime_epoch}" +%Y%m%dT%H%M%S)
 prefix="${area}_${mtime_str}_"
 places="${prefix}places.csv"
 wikidata="${prefix}wikidata.csv"
+is_in="${prefix}is_in.csv"
 dbformat="${prefix}dbformat.csv"
 
 uv run osm-placenames "$pbf" "${places}"
 uv run resolve-wikidata "${places}" "${wikidata}"
-uv run db-format "${wikidata}" "${dbformat}"
+uv run is-in "${wikidata}" "${is_in}" ./polys
+uv run db-format "${is_in}" "${dbformat}"
